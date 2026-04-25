@@ -1,5 +1,6 @@
 <%
   const friends = site.data.friends || [];
+  const friendSettings = theme.friends || {};
   const getInitials = (name) => {
     if (!name) return '?';
     const cleaned = name.replace(/[^A-Za-z0-9\u4e00-\u9fa5]/g, '');
@@ -9,9 +10,16 @@
     if (!value) return '';
     return /^(https?:)?\/\//.test(value) ? value : url_for(value);
   };
+  const styleVars = [
+    `--friends-card-min-width:${friendSettings.card_min_width || 160}px`,
+    `--friends-card-min-height:${friendSettings.card_min_height || 170}px`,
+    `--friends-avatar-size:${friendSettings.avatar_size || 76}px`,
+    `--friends-grid-gap:${friendSettings.grid_gap || 20}px`,
+    `--friends-content-gap:${friendSettings.content_gap || 14}px`
+  ].join(';');
 %>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div id="friends-page" class="content" itemprop="articleBody">
+  <div id="friends-page" class="content" itemprop="articleBody" style="<%- styleVars %>">
     <%- page.content %>
     <div class="friend-grid">
       <% friends.forEach(function(friend) { %>
