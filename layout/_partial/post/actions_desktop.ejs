@@ -31,9 +31,10 @@
     <div id="share" style="display: none">
       <%- partial('_partial/post/share', { icon_class_name: '' }) %>
     </div>
-    <% let tocHTML = toc(page.content) %>
+    <% let tocHTML = toc(page.content, { min_depth: 1, max_depth: 4 }) %>
     <% if (tocHTML !== '') { %>
       <div id="toc">
+        <div class="toc-title"><%= __('post.mobile.toc') %></div>
         <%- tocHTML %>
       </div>
     <% } %>

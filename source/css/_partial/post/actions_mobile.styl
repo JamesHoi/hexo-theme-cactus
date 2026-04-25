@@ -86,36 +86,52 @@
     padding-bottom: 1rem
     background: $color-footer-mobile-2
     text-align: left
+    
+    .toc-title
+      margin-bottom: .75rem
+      padding: 0 1rem
+      color: $color-text
+      font-size: .95rem
+      font-weight: 700
 
     ol
       margin: 0
-      padding-left: 20px
+      padding: 0 1rem 0 1.25rem
       list-style-type: none
 
       li
-        line-height: 30px
+        line-height: 1.7
 
     a:hover
       color: $color-link
 
-    .toc-level-1 > .toc-link
-      display: none
+    .toc-link
+      display: inline-block
 
-    .toc-level-2
+    .toc-level-1
       color: $color-text
-      font-size: .8rem
+      font-size: .9rem
+      font-weight: 600
 
       &:before
         color: $color-accent-1
         content: "#"
+        margin-right: .35rem
+
+    .toc-level-2
+      color: $color-meta
+      margin-left: .8rem
+      font-size: .82rem
 
     .toc-level-3
-      color: $color-meta
-      font-size: .7rem
-      line-height: 15px
+      color: darken($color-meta, 5%)
+      margin-left: 1.4rem
+      font-size: .76rem
 
     .toc-level-4
-      display: none
+      color: darken($color-meta, 15%)
+      margin-left: 2rem
+      font-size: .72rem
 
     .toc-level-5
       display: none
@@ -124,7 +140,9 @@
       display: none
 
     .toc-number
-      display: none
+      margin-right: .3rem
+      color: $color-accent-1
+      font-size: .8em
 
 @media screen and (min-width: 500px)
   #footer-post-container

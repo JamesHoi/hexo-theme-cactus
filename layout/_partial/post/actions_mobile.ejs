@@ -9,10 +9,11 @@
       </ul>
     </div>
 
-    <% let tocHTML = toc(page.content) %>
+    <% let tocHTML = toc(page.content, { min_depth: 1, max_depth: 4 }) %>
     <% if (tocHTML !== '') { %>
       <div id="toc-footer" style="display: none">
-        <%- toc(page.content) %>
+        <div class="toc-title"><%= __('post.mobile.toc') %></div>
+        <%- tocHTML %>
       </div>
     <% } %>
 
