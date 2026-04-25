@@ -1,0 +1,41 @@
+<%
+  const friends = site.data.friends || [];
+  const getInitials = (name) => {
+    if (!name) return '?';
+    const cleaned = name.replace(/[^A-Za-z0-9\u4e00-\u9fa5]/g, '');
+    return (cleaned.slice(0, 2) || name.slice(0, 2)).toUpperCase();
+  };
+  const getAsset = (value) => {
+    if (!value) return '';
+    return /^(https?:)?\/\//.test(value) ? value : url_for(value);
+  };
+%>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div id="friends-page" class="content" itemprop="articleBody">
+    <%- page.content %>
+    <div class="friend-grid">
+      <% friends.forEach(function(friend) { %>
+        <% const cardUrl = friend.url || ''; %>
+        <% const avatarUrl = getAsset(friend.avatar); %>
+        <% if (cardUrl) { %>
+          <a class="friend-card" href="<%- cardUrl %>" target="_blank" rel="noopener noreferrer">
+        <% } else { %>
+          <div class="friend-card is-disabled">
+        <% } %>
+            <div class="friend-avatar">
+              <% if (avatarUrl) { %>
+                <img src="<%- avatarUrl %>" alt="<%= friend.name %>">
+              <% } else { %>
+                <span><%= getInitials(friend.name) %></span>
+              <% } %>
+            </div>
+            <span class="friend-name"><%= friend.name %></span>
+          <% if (cardUrl) { %>
+          </a>
+        <% } else { %>
+          </div>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+</article>
